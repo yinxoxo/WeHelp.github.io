@@ -1,0 +1,268 @@
+body{
+    font-size: 20px;
+}
+
+nav,
+.list{
+    display: flex;
+}
+nav{
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo{
+    flex:none;
+    align-items: center;
+    width:200px;
+}
+
+.list{
+    justify-content:flex-end;
+    align-items: center;
+    flex:auto;
+}
+
+.item{
+    flex:none;
+    width: 80px;
+    text-align: center
+  
+}
+
+.welcome{
+    display:flex;/*做置中*/
+    justify-content:center;
+    align-items:center;/*垂直對齊*/
+    height:250px;
+    width: 100%;
+    background-color: aliceblue;
+    margin-bottom: 20px;
+}
+
+.text{
+    font-size:40px;
+    font-weight: bold;
+    text-align:center
+}
+
+
+.title {
+    width: 1200px; 
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/*promotion樣式*/
+
+.promotion {
+    display: flex; 
+    background-color: #B4CED7;
+    height: 50px;
+    line-height: 50px; 
+    padding: 0 ; 
+    flex: 1; 
+    text-align: center; 
+    margin-right: 20px;
+}
+
+.promotion img {
+    margin-right: 10px; 
+}
+
+/*三個container的樣式*/
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr); /* 分五列，第一列是兩倍寬 */
+    max-width: 1200px; /* 容器最大宽度 */
+    margin: 0 auto; /* 置中顯示 */
+}
+
+
+.container2 {/*ipad大小時的顯示圖片*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 分五列 */
+    margin: 0 auto;
+}
+.container2 :nth-last-child(-n+2) {
+    grid-column-end: span 2; /* 讓倒數第二和倒數第一個.box橫跨兩個列 */
+}
+
+.container2 .box:nth-child(4),
+.container2 .box:nth-child(8),
+.container2 .box:nth-child(10) {
+    margin-right: 0;
+}
+
+.container3{
+    margin: 0 auto; 
+}
+
+.container3 .box{
+    margin-right: 0;
+}
+
+
+/*圖片尺寸設定*/
+img {
+    max-width: 100%;    
+    height: auto;
+}
+.box{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.box img {
+    width: 100%; /* 圖片寬度填滿容器 */
+    height: 100%; /* 圖片高度填滿容器 */
+    object-fit: cover; /* 等比例縮放填滿 */
+    overflow: hidden; /* 裁剪超出容器的部分 */
+}
+
+
+/*圖片上增加內容*/
+
+.box {
+    position: relative; /* 相對定位 */
+}
+
+.box::after {
+    content: attr(data-text) '\2605'; /* 使用 data-text 属性 */
+    position: absolute;
+    background-color: rgba(111, 204, 188, 0.5); /* 半透明背景色 */
+    text-align: center; /* 文字水平居中 */
+    display: flex; 
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    line-height: 1; /* 垂直居中 */
+    font-size: 20px;
+    left: 0; /* 左邊對齊 */
+    bottom: 0;
+    top: 80%;
+    width: 100%;
+}
+
+.box::before {
+    content: '\2605'; /* 添加星星 */
+    position: absolute; 
+    top: 5px; /* 右上角偏移 */
+    right: 5px; /* 右上角偏移 */
+    font-size: 24px;
+    color: gold; 
+}
+
+
+/* table1-10文字內容 */
+.box:nth-child(1)::after {
+    content: "Table 1";
+}
+.box:nth-child(2)::after {
+    content: "Table 2";
+}
+.box:nth-child(3)::after {
+    content: "Table 3";
+}
+.box:nth-child(4)::after {
+    content: "Table 4";
+}
+.box:nth-child(5)::after {
+    content: "Table 5";
+}
+.box:nth-child(6)::after {
+    content: "Table 6";
+}
+.box:nth-child(7)::after {
+    content: "Table 7";
+}
+.box:nth-child(8)::after {
+    content: "Table 8";
+}
+.box:nth-child(9)::after {
+    content: "Table 9";
+}
+.box:nth-child(10)::after {
+    content: "Table 10";
+}
+
+/*漢堡菜單*/
+#hamburger-nav{
+    display:none;
+    
+}
+
+.hamburger-menu{
+    position: relative;
+    display: inline-block;
+}
+
+.hamburger-icon{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.hamburger-icon span{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(45, 95, 116);
+    transition: all 0.3 ease-in-out;
+}
+
+.menu-links{
+    position: absolute;
+    top:100%;
+    right:0;
+    background-color:white;
+    width :fit-content;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3 ease-in-out;
+
+}
+
+.menu-links a {
+    display:block;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    color:black;
+    text-decoration: none;
+    transition: all 0.3 ease-in-out;
+}
+
+.menu-links li{
+    list-style: none;
+}
+
+.menu-links.open {
+    max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.hamburger-icon span:first-child{
+    transform: none;
+}
+.hamburger-icon span:first-child{
+    opacity: 1;
+}
+.hamburger-icon span:first-child{
+    transform: none;
+}

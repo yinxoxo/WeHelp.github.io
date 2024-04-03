@@ -1,0 +1,74 @@
+@media screen and (min-width: 1200px) and (max-width:1960px){
+    .container2, .container3{
+        display: none;
+    }
+}
+@media screen and (min-width: 600px) and (max-width:1200px){
+    .title, .container2 { /*佔螢幕寬度的90%*/
+        width: 90%;
+    }
+    
+    .title{
+        display: flex;
+        flex-wrap: wrap; 
+    }
+
+    .promotion{
+        flex:0 0 auto;
+        margin-bottom: 20px;
+    }
+
+    .promotion:nth-child(2) , .promotion:nth-child(1){
+        margin-right: 0;
+    }
+    .promotion:nth-child(3) {
+        width: 100%; /* 将第三个 promotion 的宽度设置为 100% */
+    }
+
+    .title .promotion:nth-child(1) {
+        width: calc(50% - 10px); /* 计算宽度为父元素宽度的一半，减去间距的一半 */
+    }
+    /* 选择第二个 promotion，并设置它的宽度 */
+    .title .promotion:nth-child(2) {
+        width: calc(50% - 10px); /* 计算宽度为父元素宽度的一半，减去间距的一半 */
+    }
+    .container, .container3{
+        display: none;
+    }
+
+    
+}
+@media screen and (min-width: 360px) and (max-width:600px){
+
+    .container, .container2{
+        display: none;
+    }
+
+    #desktop-nav{
+        display: none;
+        justify-content: space-around;
+    }
+    #hamburger-nav{
+        display:flex
+    }
+    .container2{
+        display: none;
+    }
+
+    .title,
+    .container3{
+        width:90%;
+
+    }
+    .title {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .promotion {
+        flex: 1 0 100%; /* 每个 promotion 占据父元素宽度的 100% */
+        margin-bottom: 10px; /* 设置 promotion 之间的下边距 */
+    }
+}
+
+  
