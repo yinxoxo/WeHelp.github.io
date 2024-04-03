@@ -1,5 +1,7 @@
 body{
     font-size: 20px;
+    margin: 0; 
+    padding: 0; 
 }
 
 nav,
@@ -15,6 +17,7 @@ nav{
     flex:none;
     align-items: center;
     width:200px;
+    padding-left: 10px; 
 }
 
 .list{
@@ -81,21 +84,30 @@ nav{
     margin: 0 auto; /* 置中顯示 */
 }
 
+/*新增！container2用grid中的gap屬性*/
 
 .container2 {/*ipad大小時的顯示圖片*/
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 分五列 */
     margin: 0 auto;
+    grid-column-gap: 20px; /* 列之间的间距为20px */
+    grid-row-gap: 20px;
 }
+
+.container2 .box:nth-child(4n) {
+    margin-right: 0; /* 第四列的 margin-right 设置为0 */
+}
+
+.container2 .box{
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
 .container2 :nth-last-child(-n+2) {
     grid-column-end: span 2; /* 讓倒數第二和倒數第一個.box橫跨兩個列 */
 }
 
-.container2 .box:nth-child(4),
-.container2 .box:nth-child(8),
-.container2 .box:nth-child(10) {
-    margin-right: 0;
-}
+
 
 .container3{
     margin: 0 auto; 
@@ -121,6 +133,7 @@ img {
     height: 100%; /* 圖片高度填滿容器 */
     object-fit: cover; /* 等比例縮放填滿 */
     overflow: hidden; /* 裁剪超出容器的部分 */
+    
 }
 
 
@@ -191,7 +204,6 @@ img {
 /*漢堡菜單*/
 #hamburger-nav{
     display:none;
-    
 }
 
 .hamburger-menu{

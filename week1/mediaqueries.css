@@ -66,8 +66,8 @@
     }
 
     .promotion {
-        flex: 1 0 100%; /* 每个 promotion 占据父元素宽度的 100% */
-        margin-bottom: 10px; /* 设置 promotion 之间的下边距 */
+        flex: 1 0 100%; /* 每個promotion 占父元素寬度的 100% */
+        margin-bottom: 20px;  
     }
 }
 
