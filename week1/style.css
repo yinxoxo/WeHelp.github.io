@@ -228,11 +228,12 @@ img {
     z-index: 98;
     background-color: white;
     padding-top: 50px;
-    transition: 0.4s;
+    
 }
 
 .mobile-nav.is-active{
-    left: 50%;
+    right: 0;
+    
 }
 
 #mobile-text {
@@ -247,4 +248,7 @@ img {
     text-align: center;
     margin-bottom: 20px;
 }
+
+
+
 

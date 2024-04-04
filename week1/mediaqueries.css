@@ -2,6 +2,11 @@
     #hamburger-nav{
         display: none;
     }
+
+    .mobile-nav, .mobile-nav{
+        display: none;
+    }
+
     .container{
         grid-column-gap: 0px; 
         grid-row-gap: 0px;
@@ -94,4 +99,3 @@
     }
 }
 
-  
