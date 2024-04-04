@@ -174,80 +174,77 @@ img {
     content: "Table 10";
 }
 
-/*漢堡菜單*/
-#hamburger-nav{
-    display:none;
+
+
+#hamburger-nav {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
 }
 
-.hamburger-menu{
+.hamburger{
     position: relative;
-    display: inline-block;
-}
-
-.hamburger-icon{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 24px;
-    width: 30px;
+    display: block;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
+    z-index: 99;
+
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
 }
 
-.hamburger-icon span{
+.hamburger .bar, .hamburger:after, .hamburger:before{
+    content: '';
+    display: block;
     width: 100%;
-    height: 2px;
-    background-color: rgb(45, 95, 116);
-    transition: all 0.3 ease-in-out;
+    height: 5px;
+    background-color:black;
+    margin: 6px 0px;
+    transition: 0.4s;
 }
 
-.menu-links{
-    position: absolute;
-    top:100%;
-    right:0;
-    background-color:white;
-    width :fit-content;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.3 ease-in-out;
-
+.hamburger.is-active:before{
+    transform: rotate(-45deg) translate(-8px, 6px);
 }
 
-.menu-links a {
-    display:block;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.5rem;
-    color:black;
-    text-decoration: none;
-    transition: all 0.3 ease-in-out;
+.hamburger.is-active:after{
+    transform: rotate(45deg) translate(-9px, -8px);
 }
 
-.menu-links li{
-    list-style: none;
-}
-
-.menu-links.open {
-    max-height: 300px;
-}
-
-.hamburger-icon.open span:first-child {
-    transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger-icon.open span:nth-child(2) {
+.hamburger.hamburger.is-active .bar{
     opacity: 0;
 }
 
-.hamburger-icon.open span:last-child {
-    transform: rotate(-45deg) translate(6px, -6px);
+.mobile-nav{
+    position: fixed;
+    top: 0;
+    right: 100%;
+    width: 300px;
+    min-height: 100vh;
+    display: block;
+    z-index: 98;
+    background-color: white;
+    padding-top: 50px;
+    transition: 0.4s;
 }
 
-.hamburger-icon span:first-child{
-    transform: none;
+.mobile-nav.is-active{
+    left: 50%;
 }
-.hamburger-icon span:first-child{
-    opacity: 1;
+
+#mobile-text {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 16px;
+    text-align: center;
+    
 }
-.hamburger-icon span:first-child{
-    transform: none;
+.mobile-nav div {
+    text-align: center;
+    margin-bottom: 20px;
 }
+
