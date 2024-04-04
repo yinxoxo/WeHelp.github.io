@@ -56,9 +56,16 @@ nav{
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
+    margin-bottom: 20px;
 }
 
-/*promotion樣式*/
+.promotion-container {
+    display: grid; /* 使用 Grid 布局 */
+    grid-template-columns: repeat(3, 1fr); 
+    grid-column-gap: 20px; 
+    grid-row-gap: 20px; 
+    width: 100%; 
+}
 
 .promotion {
     display: flex; 
@@ -68,54 +75,23 @@ nav{
     padding: 0 ; 
     flex: 1; 
     text-align: center; 
-    margin-right: 20px;
 }
 
 .promotion img {
     margin-right: 10px; 
 }
 
-/*三個container的樣式*/
 
 .container {
+    width: 1200px;
     display: grid;
     grid-template-columns: 2fr repeat(4, 1fr); /* 分五列，第一列是兩倍寬 */
     max-width: 1200px; /* 容器最大宽度 */
     margin: 0 auto; /* 置中顯示 */
-}
-
-/*新增！container2用grid中的gap屬性*/
-
-.container2 {/*ipad大小時的顯示圖片*/
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 分五列 */
-    margin: 0 auto;
-    grid-column-gap: 20px; /* 列之间的间距为20px */
+    grid-column-gap: 20px; 
     grid-row-gap: 20px;
 }
 
-.container2 .box:nth-child(4n) {
-    margin-right: 0; /* 第四列的 margin-right 设置为0 */
-}
-
-.container2 .box{
-    margin-right: 0px;
-    margin-bottom: 0px;
-}
-
-.container2 :nth-last-child(-n+2) {
-    grid-column-end: span 2; /* 讓倒數第二和倒數第一個.box橫跨兩個列 */
-}
-
-
-
-.container3{
-    margin: 0 auto; 
-}
-
-.container3 .box{
-    margin-right: 0;
-}
 
 
 /*圖片尺寸設定*/
@@ -123,10 +99,7 @@ img {
     max-width: 100%;    
     height: auto;
 }
-.box{
-    margin-right: 20px;
-    margin-bottom: 20px;
-}
+
 
 .box img {
     width: 100%; /* 圖片寬度填滿容器 */

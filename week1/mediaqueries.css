@@ -1,10 +1,15 @@
 @media screen and (min-width: 1200px) and (max-width:1960px){
-    .container2, .container3{
-        display: none;
+    .container{
+        grid-column-gap: 0px; 
+        grid-row-gap: 0px;
+    }
+    .box{
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 @media screen and (min-width: 600px) and (max-width:1200px){
-    .title, .container2 { /*佔螢幕寬度的90%*/
+    .title, .container { /*佔螢幕寬度的90%*/
         width: 90%;
     }
     
@@ -13,36 +18,37 @@
         flex-wrap: wrap; 
     }
 
-    .promotion{
-        flex:0 0 auto;
-        margin-bottom: 20px;
+    .promotion-container { 
+        grid-template-columns: repeat(2, 1fr); /* 在 iPad 尺寸下是两列 */
     }
 
-    .promotion:nth-child(2) , .promotion:nth-child(1){
-        margin-right: 0;
-    }
     .promotion:nth-child(3) {
-        width: 100%; /* 将第三个 promotion 的宽度设置为 100% */
+        grid-column: span 2;
     }
-
-    .title .promotion:nth-child(1) {
-        width: calc(50% - 10px); /* 计算宽度为父元素宽度的一半，减去间距的一半 */
+   
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 分五列 */
+        margin: 0 auto;
     }
-    /* 选择第二个 promotion，并设置它的宽度 */
-    .title .promotion:nth-child(2) {
-        width: calc(50% - 10px); /* 计算宽度为父元素宽度的一半，减去间距的一半 */
+    
+    .container .box:nth-child(4n) {
+        margin-right: 0; /* 第四列的 margin-right 為0 */
     }
-    .container, .container3{
-        display: none;
+    
+    .container .box{
+        margin-right: 0px;
+        margin-bottom: 0px;
     }
-
+    
+    .container :nth-last-child(-n+2) {
+        grid-column-end: span 2;  
+    }
     
 }
+
 @media screen and (min-width: 360px) and (max-width:600px){
 
-    .container, .container2{
-        display: none;
-    }
 
     #desktop-nav{
         display: none;
@@ -56,7 +62,7 @@
     }
 
     .title,
-    .container3{
+    .container{
         width:90%;
 
     }
@@ -65,9 +71,14 @@
         flex-wrap: wrap;
     }
 
-    .promotion {
-        flex: 1 0 100%; /* 每個promotion 占父元素寬度的 100% */
-        margin-bottom: 20px;  
+    .promotion-container { 
+        grid-template-columns: repeat(1, 1fr); /* 在 iPad 尺寸下是两列 */
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr); /* 分五列 */
+        margin: 0 auto;
     }
 }
 
