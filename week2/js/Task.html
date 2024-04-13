@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Week2</title>
+  </head>
+  <body>
+    <script>
+      //Task1
+      function findAndPrint(messages, currentStation) {
+        // 捷運綠線地圖，不包含支線
+        const greenLineStations = [
+          "Songshan",
+          "Nanjing Sanmin",
+          "Taipei Arena",
+          "Nanjing Fuxing",
+          "Songjiang Nanjing",
+          "Zhongshan",
+          "Beimen",
+          "Ximen",
+          "Xiaonanmen",
+          "Chiang Kai-shek Memorial Hall",
+          "Guting",
+          "Taipower Building",
+          "Gongguan",
+          "Wanlong",
+          "Jingmei",
+          "Dapinglin",
+          "Qizhang",
+          "Xindian City Hall",
+          "Xindian",
+        ];
+
+        // 小碧潭支線，距離+1
+        const branchToMain = { Xiaobitan: ["Qizhang", 1] };
+
+        let distances = {}; // 存放每個朋友的站點距離
+
+        // 遍歷消息，找出每個朋友的位置
+        for (const [friend, message] of Object.entries(messages)) {
+          // Object.entries()建立鍵值對
+          let stationFound = false;
+          // 檢查是否提到支線車站
+          for (const [branch, [mainStation, extra]] of Object.entries(
+            branchToMain
+          )) {
+            if (message.toLowerCase().includes(branch.toLowerCase())) {
+              //toLowerCase()變成小寫; includes()檢查字串是否包含某字串
+              const stationIndex = greenLineStations.indexOf(mainStation); //indexOf()找出在數組中的位置
+              const distance =
+                Math.abs(
+                  //Math.abs()絕對值
+                  stationIndex - greenLineStations.indexOf(currentStation)
+                ) + extra;
+              distances[friend] = distance;
+              stationFound = true;
+              break;
+            }
+          }
+
+          // 檢查是否提到主線車站
+          if (!stationFound) {
+            // 檢查stationFound是否還是false
+            for (const station of greenLineStations) {
+              if (message.toLowerCase().includes(station.toLowerCase())) {
+                const stationIndex = greenLineStations.indexOf(station);
+                const distance = Math.abs(
+                  stationIndex - greenLineStations.indexOf(currentStation)
+                );
+                distances[friend] = distance;
+                break;
+              }
+            }
+          }
+        }
+
+        // 找出距離最近的朋友
+        if (Object.keys(distances).length > 0) {
+          //Object.keys取得鍵 //>0至少有一個朋友的資料
+          const nearestFriend = Object.keys(distances).reduce(
+            (
+              a,
+              b //reduce找出最小的值 //=>箭頭函式
+            ) => (distances[a] < distances[b] ? a : b) // 比較兩個鍵的值 //三元運算符號 條件?表達式1:表達式2
+          );
+          console.log(nearestFriend);
+        } else {
+          console.log("No friends found.");
+        }
+      }
+      const messages = {
+        Bob: "I'm at Ximen MRT station.",
+        Mary: "I have a drink near Jingmei MRT station.",
+        Copper: "I just saw a concert at Taipei Arena.",
+        Leslie: "I'm at home near Xiaobitan station.",
+        Vivian: "I'm at Xindian station waiting for you.",
+      };
+
+      //Task2
+      function book(consultants, hour, duration, criteria) {
+        // 為每個顧問建議管理時間的陣列bookings
+        consultants.forEach((consultant) => {
+          //forEach()，遍歷每個consultants，回調函數
+          if (!consultant.bookings) {
+            consultant.bookings = [];
+          }
+        });
+
+        // 找到符合時間要求的顧問
+        let availableConsultants = consultants.filter((consultant) => {
+          //filter()篩選
+          let overlapping = false; //預設為沒有衝突
+          consultant.bookings.forEach((booking) => {
+            if (!(hour + duration <= booking.start || hour >= booking.end)) {
+              //發生衝突
+              overlapping = true;
+            }
+          });
+          return !overlapping; //沒有衝突!False，則將入availableConsultant中
+        });
+
+        // 根據標準排序顧問
+        let selectedConsultant;
+        if (criteria === "price") {
+          selectedConsultant = availableConsultants.sort(
+            //sort()決定排列
+            (a, b) => a.price - b.price //低到高排列
+          );
+        } else if (criteria === "rate") {
+          selectedConsultant = availableConsultants.sort(
+            (a, b) => b.rate - a.rate //高到低排列
+          );
+        } else {
+          console.log("Invalid criteria");
+          return;
+        }
+
+        // 決定預約哪個顧問或 "No Service"
+        if (availableConsultants.length > 0 && selectedConsultant.length > 0) {
+          selectedConsultant = selectedConsultant[0]; // 選擇排序後的第一位顧問
+          selectedConsultant.bookings.push({
+            start: hour,
+            end: hour + duration,
+          });
+          console.log(selectedConsultant.name);
+        } else {
+          console.log("No Service");
+        }
+      }
+
+      let consultants = [
+        { name: "John", rate: 4.5, price: 1000 },
+        { name: "Bob", rate: 3, price: 1200 },
+        { name: "Jenny", rate: 3.8, price: 800 },
+      ];
+
+      //Task3
+      function func(...data) {
+        // 創建中間名字的列表
+        let middleNames = {};
+
+        // 找尋中間名
+        data.forEach((name) => {
+          let length = name.length;
+          let middleName;
+
+          // 根據名字長度決定中間名
+          if (length === 2 || length === 3) {
+            middleName = name[1]; // 如果是二字或三字名，中間字是第二個
+          } else if (length === 4 || length === 5) {
+            middleName = name[2]; // 如果四字或五字名，中間字是第三個
+          }
+
+          // 将中间名和对应的完整姓名存放在对象中
+          if (!middleNames[middleName]) {
+            middleNames[middleName] = []; // 如果不存在，創建一個新的陣列
+          }
+          middleNames[middleName].push(name); // 使用 .push() 方法添加名字到對應的資料中
+        });
+
+        // 尋找只有一個的中間名，找出對應的完整名
+        let uniqueName = Object.values(middleNames)
+          .filter((names) => names.length === 1) //塞選出只有一個名字的
+          .map((names) => names[0]);
+
+        // 印出完整名字
+        if (uniqueName.length > 0) {
+          console.log(uniqueName[0]);
+        } else {
+          console.log("没有");
+        }
+      }
+
+      //Task4
+      function getNumber(index) {
+        const cycleLength = 3; // 數列為三個一循環，視為一週期
+        const cyclesCompleted = Math.floor(index / cycleLength); // 完成的周期數 //Math.floor取整數
+        const remainder = index % cycleLength; // 數據在周期中的哪個位置
+
+        let value = cyclesCompleted * 7; // 跑完一週期+7
+
+        if (remainder === 1) {
+          // 數據在週期第一個位置 +4
+          value += 4;
+        } else if (remainder === 2) {
+          // 數據在週期第二個位置 +8
+          value += 8;
+        }
+        return console.log(value);
+      }
+
+      // Testing
+      console.log("===Task 1===");
+      findAndPrint(messages, "Wanlong"); // print Mary
+      findAndPrint(messages, "Songshan"); // print Copper
+      findAndPrint(messages, "Qizhang"); // print Leslie
+      findAndPrint(messages, "Ximen"); // print Bob
+      findAndPrint(messages, "Xindian City Hall"); // print Vivian
+
+      console.log("===Task 2===");
+      book(consultants, 15, 1, "price"); // Jenny
+      book(consultants, 11, 2, "price"); // Jenny
+      book(consultants, 10, 2, "price"); // John
+      book(consultants, 20, 2, "rate"); // John
+      book(consultants, 11, 1, "rate"); // Bob
+      book(consultants, 11, 2, "rate"); // No Service
+      book(consultants, 14, 3, "price"); // John
+
+      console.log("===Task 3===");
+      func("彭大牆", "陳王明雅", "吳明"); // print 彭大牆
+      func("郭靜雅", "王立強", "郭林靜宜", "郭立恆", "林花花"); // print 林花花
+      func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print 沒有
+      func("郭宣雅", "夏曼藍波安", "郭宣恆"); // print 夏曼藍波安
+
+      console.log("===Task 4===");
+      getNumber(1); // print 4
+      getNumber(5); // print 15
+      getNumber(10); // print 25
+      getNumber(30); // print 70
+    </script>
+  </body>
+</html>
