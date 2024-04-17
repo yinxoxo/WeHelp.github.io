@@ -1,0 +1,204 @@
+body {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav,
+.list {
+  display: flex;
+}
+nav {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo {
+  flex: none;
+  align-items: center;
+  width: 200px;
+  padding-left: 10px;
+}
+
+.list {
+  justify-content: flex-end;
+  align-items: center;
+  flex: auto;
+}
+
+.item {
+  flex: none;
+  width: 80px;
+  text-align: center;
+}
+
+.welcome {
+  display: flex; /*做置中*/
+  justify-content: center;
+  align-items: center; /*垂直對齊*/
+  height: 250px;
+  width: 100%;
+  background-color: aliceblue;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.title {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.promotion-container {
+  display: grid; /* 使用 Grid 布局 */
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  width: 100%;
+}
+
+.promotion {
+  display: flex;
+  background-color: #b4ced7;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.promotion img {
+  margin-right: 10px;
+}
+
+.container {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr); /* 分五列，第一列是兩倍寬 */
+  max-width: 1200px; /* 容器最大宽度 */
+  margin: 0 auto; /* 置中顯示 */
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+/*圖片尺寸設定*/
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.box img {
+  width: 100%; /* 圖片寬度填滿容器 */
+  height: 100%; /* 圖片高度填滿容器 */
+  object-fit: cover; /* 等比例縮放填滿 */
+  overflow: hidden; /* 裁剪超出容器的部分 */
+}
+
+/*圖片上增加內容*/
+
+.box {
+  position: relative; /* 相對定位 */
+}
+
+.box::before {
+  content: "\2605"; /* 添加星星 */
+  position: absolute;
+  top: 5px; /* 右上角偏移 */
+  right: 5px; /* 右上角偏移 */
+  font-size: 24px;
+  color: gold;
+}
+
+/*景點標題*/
+.text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(111, 204, 188, 0.5); /* 半透明背景色 */
+  color: black; /* 文本颜色 */
+  text-align: center;
+  padding: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#hamburger-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  position: relative;
+  display: block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  z-index: 99;
+
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.hamburger .bar,
+.hamburger:after,
+.hamburger:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0px;
+  transition: 0.4s;
+}
+
+.hamburger.is-active:before {
+  transform: rotate(-45deg) translate(-8px, 6px);
+}
+
+.hamburger.is-active:after {
+  transform: rotate(45deg) translate(-9px, -8px);
+}
+
+.hamburger.hamburger.is-active .bar {
+  opacity: 0;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 100%;
+  width: 300px;
+  min-height: 100vh;
+  display: block;
+  z-index: 98;
+  background-color: white;
+  padding-top: 50px;
+}
+
+.mobile-nav.is-active {
+  right: 0;
+}
+
+#mobile-text {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 16px;
+  text-align: center;
+}
+.mobile-nav div {
+  text-align: center;
+  margin-bottom: 20px;
+}
