@@ -1,6 +1,6 @@
 import json
 import csv
-import requests
+import urllib.request
 
 serial_to_stitle = {}  # 存放serial_no:stitle
 serial_to_district = {}  # 存放serial_no:{各種data}
@@ -9,8 +9,9 @@ serial_to_district = {}  # 存放serial_no:{各種data}
 url1 = (
     "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-1"
 )
-response1 = requests.get(url1)
-data1 = response1.json()  # 直接從響應轉換為JSON
+with urllib.request.urlopen(url1) as response:
+    data1 = json.loads(response.read().decode())
+
 for result in data1["data"]["results"]:
     serial_no = result["SERIAL_NO"]
     stitle = result["stitle"]
@@ -34,8 +35,9 @@ for result in data1["data"]["results"]:
 url2 = (
     "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-2"
 )
-response2 = requests.get(url2)
-data2 = response2.json()
+with urllib.request.urlopen(url2) as response:
+    data2 = json.loads(response.read().decode())
+
 mrt_to_stitles = {}
 for result in data2["data"]:
     mrt_station = result["MRT"]
@@ -68,5 +70,6 @@ with open("spot.csv", "w", newline="", encoding="utf-8") as csv_file:
 with open("mrt.csv", "w", newline="", encoding="utf-8") as csv_file:
     writer = csv.writer(csv_file)
     for mrt_station, stitles in mrt_to_stitles.items():
-        stitles_list = ", ".join(stitles)
-        writer.writerow([mrt_station, stitles_list])
+        row = [mrt_station]
+        row.extend(stitles)  # 將每個景點作為單獨一個欄位添加到行中
+        writer.writerow(row)
