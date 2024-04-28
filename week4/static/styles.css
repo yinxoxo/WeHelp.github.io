@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif; /* 使用更易讀的字體 */
+  display: flex; /* 新增：使 body 使用 Flexbox */
+  flex-direction: column; /* 新增：子元素垂直排列 */
+  align-items: center; /* 新增：所有元素水平居中 */
+}
+
+div {
+  display: flex; /* 启用 Flexbox */
+  justify-content: center; /* 水平居中对齐所有子元素 */
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.top_title {
+  background-color: #02366bbe; /* 深藍色 */
+  font-size: 20px;
+  width: 100%; /* 設定寬度為整個視窗的寬度 */
+  height: 60px; /* 固定高度 */
+  color: white; /* 設定文字顏色為白色 */
+  box-sizing: border-box; /* 確保 padding 不會影響元素的總寬度 */
+  top: 0; /* 距離視窗頂部 0 */
+  left: 0; /* 距離視窗左側 0 */
+  display: flex; /* 使用 Flexbox 來布局子元素 */
+  align-items: center; /* 垂直居中子元素 */
+  justify-content: center; /* 水平居中子元素（可選，因為 text-align 已經設定） */
+}
+
+.body_title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+label {
+  display: inline; /* 讓標籤成為內聯塊級元素 */
+  min-width: 70px; /* 為標籤設置最小寬度，確保對齊 */
+  margin-right: 10px; /* 標籤與輸入框之間的右間隔 */
+  text-align: right; /* 文字靠右對齊，看起來更整齊 */
+  line-height: 1.5; /* 調整行高以與輸入框對齊 */
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 60%; /* 輸入框的寬度需要減去標籤的寬度和間隔 */
+  padding: 5px; /* 增加內距，使輸入更舒適 */
+}
+
+input[type="checkbox"] {
+  vertical-align: middle; /* 確保勾選框與標籤垂直對齊 */
+}
+
+button {
+  padding: 10px 20px; /* 按鈕內填充 */
+  background-color: #8cacc8; /* 按鈕背景色 */
+  color: white; /* 文字顏色 */
+  border: none; /* 無邊框 */
+  cursor: pointer; /* 鼠標樣式 */
+}
+
+button:hover {
+  background-color: #02366bbe; /* 滑鼠懸停時的背景色 */
+}
