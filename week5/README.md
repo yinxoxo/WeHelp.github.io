@@ -53,7 +53,7 @@ SELECT *  member ORDER BY time DESC LIMIT 3 OFFSET 1;
 
 - SELECT rows where username equals to test.
 ```sql=
-SELECT * FROM member WHERE name='test';
+SELECT * FROM member WHERE username='test';
 ```
 ![](https://github.com/yinxoxo/WeHelp.github.io/blob/main/week5/week5%20screenshot/t3-5.png)
  
